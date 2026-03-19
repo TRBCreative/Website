@@ -1,529 +1,529 @@
-<!doctype html>
-<html lang="en" data-theme="light">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TRB Creative — AI Web Developer</title>
-  <meta name="description" content="TRB Creative by Tirtharaj Brahma. AI-powered web development. Clean UI, fast delivery, custom changes. I build beautiful websites that convert." />
-  <meta name="theme-color" content="#7c3aed">
-  <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="TRB Creative — AI Web Developer">
-  <meta property="og:description" content="TRB Creative by Tirtharaj Brahma. AI-powered web developer. Clean UI, fast delivery, custom changes.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.com">
-  <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
-  <meta name="twitter:card" content="summary_large_image">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRB Creative — Web & AI Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #050608;
+  --surface: #0b0d10;
+  --border:  rgba(255,255,255,0.07);
+  --text:    #e8eaf0;
+  --muted:   rgba(232,234,240,0.38);
+  --accent:  #00e5ff;
+  --accent2: #7b5ea7;
+  --accent3: #ff4d6d;
+  --ff:      'Syne', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--ff);overflow-x:hidden;cursor:none;}
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+/* CURSOR */
+#cur,#cur-ring{position:fixed;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cur{width:8px;height:8px;background:var(--accent);transition:width .2s,height .2s;mix-blend-mode:screen;}
+#cur-ring{width:36px;height:36px;border:1px solid rgba(0,229,255,.3);transition:width .4s cubic-bezier(.16,1,.3,1),height .4s cubic-bezier(.16,1,.3,1),border-color .3s;}
+body.hov #cur{width:16px;height:16px;}
+body.hov #cur-ring{width:64px;height:64px;border-color:rgba(0,229,255,.55);}
 
-  <style>
-    :root {
-      --accent: #7c3aed;
-      --accent-2: #22d3ee;
-      --bg: #0b0b12;
-      --bg-soft: #0f1020;
-      --text: #e8e8ef;
-      --muted: #b2b3c7;
-      --card: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 12px 30px rgba(10,12,28,0.18);
-      --focus: #22d3ee;
-      --danger: #ef4444;
-      --success: #22c55e;
-      --warning: #f59e0b;
-    }
-    [data-theme="light"] {
-      --bg: #fcfcfe;
-      --bg-soft: #f5f6ff;
-      --text: #0e1020;
-      --muted: #475069;
-      --card: #ffffff;
-      --border: rgba(10, 12, 28, 0.08);
-      --shadow: 0 12px 30px rgba(10,12,28,0.08);
-    }
-    [hidden]{display:none!important}
+/* LOADER */
+#loader{position:fixed;inset:0;z-index:8000;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;}
+#loader.out{animation:ld-out .9s cubic-bezier(.7,0,.3,1) forwards;}
+@keyframes ld-out{to{opacity:0;transform:scale(1.04);visibility:hidden;}}
+.ld-logo{font-weight:800;font-size:clamp(32px,6vw,60px);letter-spacing:-.02em;opacity:0;animation:pop 1s cubic-bezier(.16,1,.3,1) forwards;}
+@keyframes pop{from{opacity:0;transform:translateY(20px) scale(.96);}to{opacity:1;transform:none;}}
+.ld-logo span{color:var(--accent);}
+.ld-track{width:180px;height:1px;background:rgba(255,255,255,.08);overflow:hidden;position:relative;}
+.ld-fill{position:absolute;top:0;left:0;height:100%;width:0;background:linear-gradient(to right,var(--accent2),var(--accent));animation:bar 2s cubic-bezier(.4,0,.2,1) .3s forwards;}
+@keyframes bar{to{width:100%;}}
+.ld-label{font-family:var(--mono);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);opacity:0;animation:pop 1s ease .5s both;}
 
-    * { box-sizing: border-box }
-    html { scroll-behavior: smooth }
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(800px 500px at 10% -10%, rgba(124,58,237,0.15), transparent 50%),
-        radial-gradient(800px 500px at 100% 10%, rgba(34,211,238,0.15), transparent 40%),
-        var(--bg);
-      line-height: 1.6;
-    }
+/* GRID */
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:1;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 70% 70% at 50% 30%,black,transparent);}
 
-    .container { width: min(1120px, 92%); margin: 0 auto }
+/* HERO */
+#hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;padding:120px clamp(24px,6vw,100px) 80px;}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;}
+.o1{width:600px;height:600px;background:radial-gradient(circle,rgba(0,229,255,.08),transparent 70%);top:-100px;left:-100px;animation:od 12s ease-in-out infinite alternate;}
+.o2{width:500px;height:500px;background:radial-gradient(circle,rgba(123,94,167,.1),transparent 70%);bottom:-80px;right:-80px;animation:od 16s ease-in-out infinite alternate-reverse;}
+.o3{width:300px;height:300px;background:radial-gradient(circle,rgba(255,77,109,.07),transparent 70%);top:40%;left:55%;animation:od 9s ease-in-out infinite alternate;}
+@keyframes od{from{transform:translate(0,0) scale(1);}to{transform:translate(40px,30px) scale(1.12);}}
 
-    /* Navbar */
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.2) blur(10px); background: rgba(255,255,255,0.02) }
-    .nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 0; border-bottom: 1px solid var(--border);
-    }
-    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 0.3px }
-    
-    .brand-logo {
-      width: 34px; height: 34px; border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(124,58,237,0.35);
-      object-fit: cover; background-color: var(--accent);
-    }
+.hero-inner{position:relative;z-index:2;max-width:1100px;}
 
-    nav ul { display: flex; gap: 20px; list-style: none; padding: 0; margin: 0 }
-    nav a { text-decoration: none; color: var(--muted); font-weight: 500 }
-    nav a:hover { color: var(--text) }
-    .right { display: flex; align-items: center; gap: 10px; position: relative; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
-      padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border);
-      background: var(--card); color: var(--text); font-weight: 600; text-decoration: none;
-      box-shadow: var(--shadow); transition: transform .15s ease, background .15s ease;
-    }
-    .btn:hover { transform: translateY(-2px) }
-    .btn.primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: white; border: none;
-    }
-    .ghost { background: transparent }
-    .theme-toggle {
-      border-radius: 10px; border: 1px solid var(--border);
-      background: var(--card); width: 42px; height: 42px; display: grid; place-items: center;
-      position: relative; z-index: 1;
-    }
+.hero-tag{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(0,229,255,.2);padding:8px 18px;border-radius:100px;margin-bottom:48px;opacity:0;animation:rise 1s ease 2.6s both;}
+@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pd 2s ease infinite;}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.3;transform:scale(.5);}}
 
-    /* Connection Status Indicator */
-    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-    .connection-status {
-      position: absolute; top: 50%; left: 21px; transform: translate(-50%, -50%);
-      width: 48px; height: 48px; border-radius: 14px; border: 2px solid var(--warning);
-      animation: pulse 2s infinite; transition: border-color .3s ease; pointer-events: none;
-    }
-    .connection-status.connected { border-color: var(--success); animation: none; }
-    .connection-status.disconnected { border-color: var(--danger); animation: none; }
+.hero-h1{font-size:clamp(52px,9.5vw,148px);font-weight:800;line-height:.88;letter-spacing:-.04em;margin-bottom:40px;}
+.hl{display:block;overflow:hidden;}
+.hi{display:block;transform:translateY(110%);animation:lu 1s cubic-bezier(.16,1,.3,1) both;}
+.hi.d1{animation-delay:2.8s;}
+.hi.d2{animation-delay:2.95s;color:var(--muted);}
+.hi.d3{animation-delay:3.1s;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+@keyframes lu{to{transform:translateY(0);}}
 
-    /* Hero */
-    .hero { padding: 80px 0 40px }
-    .hero-grid { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; align-items: center }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 600; letter-spacing: .4px }
-    .eyebrow .dot { width: 6px; height: 6px; border-radius: 999px; background: linear-gradient(135deg,var(--accent),var(--accent-2)) }
-    h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.08; margin: 10px 0 10px; font-weight: 800; }
-    .brand-title {
-      position: relative; display: flex; align-items: center; gap: 12px;
-      font-size: clamp(36px, 6vw, 64px); line-height: 1.04; margin: 8px 0 6px;
-    }
-    .title-logo {
-      width: clamp(40px, 6vw, 64px); height: clamp(40px, 6vw, 64px);
-      border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: var(--shadow); object-fit: cover;
-    }
-    .grad {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .lead { color: var(--muted); font-size: clamp(16px, 2vw, 20px); margin-bottom: 20px }
-    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap }
-    .hero-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; box-shadow: var(--shadow); }
-    .stat { font-weight: 800; font-size: 28px }
-    .muted { color: var(--muted) }
+.hero-sub{font-family:var(--mono);font-size:clamp(13px,1.4vw,16px);line-height:1.85;color:var(--muted);max-width:500px;margin-bottom:56px;opacity:0;animation:rise 1s ease 3.4s both;}
 
-    /* Sections */
-    section { padding: 64px 0 }
-    .section-head { display:flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-    .section-title { font-size: 28px; margin: 0; font-weight: 800 }
-    .section-sub { color: var(--muted); margin: 0 }
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:rise 1s ease 3.6s both;}
 
-    .grid { display: grid; gap: 16px }
-    .grid.services { grid-template-columns: repeat(4, 1fr) }
-    .service { padding: 18px; border-radius: 16px; background: var(--card); border: 1px solid var(--border) }
-    .service h3 { margin: 0 0 8px }
-    .chip { display: inline-block; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); font-size: 12px }
+.btn-p{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;padding:18px 36px;border-radius:4px;position:relative;overflow:hidden;transition:color .4s;cursor:none;}
+.btn-p::before{content:'';position:absolute;inset:0;background:#fff;transform:translateX(-101%);transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.btn-p:hover{color:var(--bg);}
+.btn-p:hover::before{transform:none;}
+.btn-p span{position:relative;}
 
-    /* Dynamic Sections (Work, Testimonials) */
-    .grid.work { grid-template-columns: repeat(3, 1fr) }
-    .work-card { position: relative; overflow: hidden; border-radius: 16px; background: var(--card); border: 1px solid var(--border) }
-    .work-card img { width: 100%; height: 220px; object-fit: cover; display: block; transition: transform .3s ease }
-    .work-card:hover img { transform: scale(1.03) }
+.btn-g{display:inline-flex;align-items:center;gap:12px;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;padding:18px 36px;border-radius:4px;cursor:none;transition:border-color .3s,color .3s;}
+.btn-g:hover{border-color:rgba(0,229,255,.4);color:var(--accent);}
 
-    .grid.testimonials { grid-template-columns: repeat(3, 1fr) }
-    .quote { position: relative; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px }
-    .stars { color: #f5b301; letter-spacing: 1px }
+.scroll-ind{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:rise 1s ease 4s both;}
+.scroll-ind span{font-family:var(--mono);font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--accent),transparent);animation:sp 2s ease infinite;}
+@keyframes sp{0%{transform:scaleY(0);transform-origin:top;opacity:1;}60%{transform:scaleY(1);transform-origin:top;opacity:1;}100%{transform:scaleY(1);transform-origin:top;opacity:0;}}
 
-    /* Process */
-    .grid.process { grid-template-columns: repeat(4, 1fr) }
-    .step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px }
-    .step .n { width: 28px; height: 28px; border-radius: 8px; display:grid;place-items:center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-weight: 700 }
-    
-    /* NEW: About Section Layout */
-    .about-grid {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        gap: 40px;
-        align-items: center;
-    }
-    .about-photo-wrap {
-        position: relative;
-        width: 100%;
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        border: 1px solid var(--border);
-    }
-    .about-photo-wrap img {
-        width: 100%;
-        display: block;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        background-color: var(--bg-soft);
-    }
-    
-    /* Footer */
-    footer { border-top: 1px solid var(--border); padding: 34px 0 60px; margin-top: 40px }
-    .foot { display:flex; align-items:center; justify-content:space-between; gap: 14px; flex-wrap: wrap }
-    .links { display:flex; gap:12px; flex-wrap:wrap }
-    .links a { color: var(--muted); text-decoration: none }
-    .links a:hover { color: var(--text) }
+/* TICKER */
+.ticker{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;overflow:hidden;display:flex;background:var(--surface);}
+.ticker-track{display:flex;white-space:nowrap;animation:tk 22s linear infinite;}
+.ticker:hover .ticker-track{animation-play-state:paused;}
+@keyframes tk{to{transform:translateX(-50%);}}
+.tk-item{display:inline-flex;align-items:center;gap:24px;padding:0 32px;font-family:var(--mono);font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);}
+.tk-dot{width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0;}
 
-    /* ADMIN & EDITING UI */
-    [data-edit-control] { display: none }
-    body.editing [data-edit-control] { display: inline-flex }
+/* SECTIONS */
+.sec{padding:clamp(80px,11vw,160px) clamp(24px,6vw,100px);}
 
-    .add-btn { padding: 8px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-weight: 600; cursor: pointer; align-items: center; gap: 6px; }
-    .remove-btn {
-      position: absolute; top: 10px; right: 10px; z-index: 10;
-      width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border); background: rgba(20,22,38,0.5);
-      color: #fff; font-size: 18px; line-height: 1; cursor: pointer; display: none; place-items: center; backdrop-filter: blur(4px);
-    }
-    body.editing .remove-btn { display: grid; }
-    .kebab { display: inline-grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--muted); cursor: pointer; }
-    .kebab:hover { color: var(--text) }
-    .edit-controls { position: fixed; right: 18px; bottom: 18px; z-index: 1000; display: flex; gap: 10px; align-items: center; background: rgba(20,22,38,0.7); border: 1px solid var(--border); backdrop-filter: saturate(1.2) blur(8px); padding: 10px 12px; border-radius: 14px; box-shadow: var(--shadow); }
-    .edit-chip { font-size: 13px; font-weight: 800; color: #fff; background: linear-gradient(135deg, var(--accent), var(--accent-2)); padding: 10px 14px; border-radius: 12px; box-shadow: 0 6px 16px rgba(124,58,237,.25); user-select: none; }
-    .edit-btn { padding: 10px 12px; border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; font-weight: 600; }
-    .edit-btn:hover { transform: translateY(-1px) }
-    .edit-btn.danger { border-color: rgba(239, 68, 68, .4); color: var(--danger); background: rgba(239, 68, 68, .1) }
-    body.editing [contenteditable="true"] { outline: 2px dashed var(--focus); outline-offset: 2px; border-radius: 6px; }
+.eyebrow{display:flex;align-items:center;gap:16px;font-family:var(--mono);font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s;}
+.eyebrow.vis{opacity:1;transform:none;}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--accent);}
 
-    /* Modals */
-    .modal-backdrop { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; background: rgba(0,0,0,0.45); backdrop-filter: blur(6px); padding: 20px; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
-    .modal-backdrop.show { opacity: 1; pointer-events: auto; }
-    .modal-card { width: min(420px, 92%); background: var(--card); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow); padding: 24px; transform: scale(0.95); transition: transform .2s ease; }
-    .modal-backdrop.show .modal-card { transform: scale(1); }
-    .modal-head { display:flex; align-items:center; justify-content:space-between; margin-bottom: 12px; }
-    .modal-title { font-weight: 800; font-size: 20px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .modal-body { display: grid; gap: 12px; color: var(--muted) }
-    .modal-actions { display:flex; gap: 10px; justify-content: flex-end; margin-top: 20px }
-    .field { display:grid; gap: 6px }
-    .field label { font-weight: 600; color: var(--muted) }
-    .field input[type="password"] { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-soft); color: var(--text); font: inherit; width: 100%; }
-    .modal-close { background: transparent; border: 1px solid var(--border); color: var(--muted); border-radius: 10px; padding: 8px 10px; cursor: pointer; font-weight: 600; }
-    .modal-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border: none; border-radius: 10px; padding: 10px 14px; cursor: pointer; font-weight: 700; }
-    .modal-danger { background: var(--danger); }
+.sh2{font-size:clamp(36px,6vw,88px);font-weight:800;letter-spacing:-.03em;line-height:.95;margin-bottom:80px;opacity:0;transform:translateY(30px);transition:opacity .8s ease .1s,transform .8s ease .1s;}
+.sh2.vis{opacity:1;transform:none;}
+.sh2 em{font-style:italic;font-weight:400;color:var(--muted);}
 
-    /* Drag hint */
-    .drop-hint { position: absolute; inset: 0; border: 2px dashed var(--focus); border-radius: inherit; display: grid; place-items: center; color: var(--focus); background: rgba(34,211,238,0.08); pointer-events: none; opacity: 0; transition: .2s ease; }
-    .work-card.dragging .drop-hint, .brand-title.dragging .drop-hint, .about-photo-wrap.dragging .drop-hint { opacity: 1 }
+/* SERVICES */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:3px;}
+.svc{background:var(--surface);padding:clamp(48px,5vw,80px) clamp(36px,4vw,64px);position:relative;overflow:hidden;cursor:none;opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s,background .4s;}
+.svc.vis{opacity:1;transform:none;}
+.svc:nth-child(2){transition-delay:.15s;}
+.svc:hover{background:#0f1115;}
+.svc-glow{position:absolute;inset:0;opacity:0;transition:opacity .5s;pointer-events:none;}
+.svc:nth-child(1) .svc-glow{background:radial-gradient(ellipse 60% 50% at 20% 80%,rgba(0,229,255,.06),transparent);}
+.svc:nth-child(2) .svc-glow{background:radial-gradient(ellipse 60% 50% at 80% 80%,rgba(123,94,167,.08),transparent);}
+.svc:hover .svc-glow{opacity:1;}
+.svc-num{font-family:var(--mono);font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--muted);margin-bottom:40px;}
+.svc-icon{width:56px;height:56px;margin-bottom:40px;}
+.svc-icon svg{width:100%;height:100%;}
+.svc-title{font-size:clamp(26px,3.5vw,46px);font-weight:800;letter-spacing:-.02em;margin-bottom:24px;line-height:1;}
+.svc:nth-child(1) .svc-title{color:var(--accent);}
+.svc:nth-child(2) .svc-title{background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.svc-body{font-family:var(--mono);font-size:clamp(12px,1.2vw,14px);line-height:1.85;color:var(--muted);max-width:380px;margin-bottom:48px;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.svc-tag{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:100px;color:var(--muted);transition:border-color .3s,color .3s;}
+.svc:hover .svc-tag{border-color:rgba(0,229,255,.25);color:var(--text);}
 
-    /* Responsive */
-    @media (max-width: 1000px) {
-      .grid.services, .grid.work, .grid.process, .grid.testimonials { grid-template-columns: repeat(2, 1fr) }
-      .hero-grid { grid-template-columns: 1fr }
-      nav ul { display: none }
-      .about-grid { grid-template-columns: 1fr; gap: 24px; }
-      .about-photo-wrap { max-width: 300px; margin: 0 auto; }
-    }
-    @media (max-width: 640px) {
-      .grid.services, .grid.work, .grid.process, .grid.testimonials { grid-template-columns: 1fr }
-    }
+/* AI STRIP */
+#ai-strip{padding:clamp(80px,10vw,130px) clamp(24px,6vw,100px);background:var(--surface);position:relative;overflow:hidden;}
+#ai-strip::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--accent),transparent);}
+#ai-strip::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,rgba(123,94,167,.5),transparent);}
+.ai-hdr{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.ai-h2{font-size:clamp(36px,5.5vw,80px);font-weight:800;letter-spacing:-.03em;line-height:.95;opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s;}
+.ai-h2.vis{opacity:1;transform:none;}
+.ai-h2 .ag{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;}
+.ai-desc{font-family:var(--mono);font-size:clamp(12px,1.2vw,14px);line-height:1.9;color:var(--muted);padding-top:12px;opacity:0;transform:translateY(20px);transition:opacity .8s ease .1s,transform .8s ease .1s;}
+.ai-desc.vis{opacity:1;transform:none;}
+.ai-feats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.af{background:var(--bg);padding:40px 36px;position:relative;overflow:hidden;cursor:none;opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s,background .4s;}
+.af.vis{opacity:1;transform:none;}
+.af:nth-child(2){transition-delay:.1s;}
+.af:nth-child(3){transition-delay:.2s;}
+.af:hover{background:#0c0e12;}
+.af::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1);}
+.af:hover::after{transform:scaleX(1);}
+.af-icon{font-size:28px;margin-bottom:24px;display:block;}
+.af-name{font-size:clamp(18px,2vw,24px);font-weight:700;margin-bottom:14px;letter-spacing:-.01em;}
+.af-text{font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--muted);}
 
-    /* Animations */
-    .reveal { opacity: 0; transform: translateY(12px); transition: .6s ease }
-    .reveal.on { opacity: 1; transform: none }
-    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none } * { animation: none !important; transition: none !important } }
-  </style>
+/* PROCESS */
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:64px;}
+.ps{background:var(--surface);padding:40px 32px 48px;position:relative;cursor:none;overflow:hidden;opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s,background .3s;}
+.ps.vis{opacity:1;transform:none;}
+.ps:nth-child(2){transition-delay:.1s;}
+.ps:nth-child(3){transition-delay:.2s;}
+.ps:nth-child(4){transition-delay:.3s;}
+.ps:hover{background:#0e1014;}
+.ps-ghost{position:absolute;top:20px;right:24px;font-size:80px;font-weight:800;line-height:1;color:rgba(255,255,255,.04);pointer-events:none;}
+.ps-bar{width:32px;height:2px;background:var(--accent);margin-bottom:32px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1) .3s;}
+.ps.vis .ps-bar{transform:scaleX(1);}
+.ps:nth-child(2) .ps-bar{background:var(--accent2);transition-delay:.45s;}
+.ps:nth-child(3) .ps-bar{background:#00e5a0;transition-delay:.6s;}
+.ps:nth-child(4) .ps-bar{background:var(--accent3);transition-delay:.75s;}
+.ps-title{font-size:clamp(18px,2.2vw,26px);font-weight:700;margin-bottom:16px;letter-spacing:-.01em;}
+.ps-text{font-family:var(--mono);font-size:12px;line-height:1.8;color:var(--muted);}
+
+/* NUMBERS */
+#numbers{padding:clamp(60px,9vw,120px) clamp(24px,6vw,100px);display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.ni{background:var(--bg);padding:48px 36px;opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s;}
+.ni.vis{opacity:1;transform:none;}
+.ni:nth-child(2){transition-delay:.1s;}
+.ni:nth-child(3){transition-delay:.2s;}
+.ni:nth-child(4){transition-delay:.3s;}
+.nv{font-size:clamp(52px,7vw,96px);font-weight:800;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,var(--text),var(--muted));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.nu{font-size:.45em;letter-spacing:0;-webkit-text-fill-color:var(--accent);}
+.nl{font-family:var(--mono);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:12px;}
+
+/* PROJECTS */
+.proj-list{display:flex;flex-direction:column;gap:2px;margin-top:64px;}
+.pr{display:grid;grid-template-columns:80px 1fr 200px 140px;align-items:center;gap:32px;padding:28px 40px;background:var(--surface);cursor:none;position:relative;overflow:hidden;opacity:0;transform:translateX(-20px);transition:opacity .7s,transform .7s,background .35s;}
+.pr.vis{opacity:1;transform:none;}
+.pr:nth-child(2){transition-delay:.1s;}
+.pr:nth-child(3){transition-delay:.2s;}
+.pr:nth-child(4){transition-delay:.3s;}
+.pr:nth-child(5){transition-delay:.4s;}
+.pr:hover{background:#0e1014;}
+.pr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--border),transparent);}
+.pr-idx{font-family:var(--mono);font-size:11px;letter-spacing:.35em;color:var(--muted);}
+.pr-name{font-size:clamp(18px,2.5vw,28px);font-weight:700;letter-spacing:-.01em;transition:color .3s;}
+.pr:hover .pr-name{color:var(--accent);}
+.pr-type{font-family:var(--mono);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);}
+.pr-year{font-family:var(--mono);font-size:11px;letter-spacing:.3em;color:var(--muted);text-align:right;}
+.pr-arrow{position:absolute;right:40px;top:50%;transform:translateY(-50%) translateX(10px);opacity:0;color:var(--accent);font-size:20px;transition:opacity .3s,transform .3s;}
+.pr:hover .pr-arrow{opacity:1;transform:translateY(-50%) translateX(0);}
+
+/* CTA */
+#cta{padding:clamp(100px,14vw,180px) clamp(24px,6vw,100px);text-align:center;position:relative;overflow:hidden;}
+#cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,229,255,.05),transparent);pointer-events:none;}
+.cta-h2{font-size:clamp(48px,9vw,130px);font-weight:800;letter-spacing:-.04em;line-height:.88;margin-bottom:40px;}
+.cw{display:inline-block;opacity:0;transform:translateY(40px);transition:opacity .6s,transform .6s cubic-bezier(.16,1,.3,1);}
+.cw.vis{opacity:1;transform:none;}
+.cw.grad{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cta-sub{font-family:var(--mono);font-size:clamp(12px,1.3vw,15px);color:var(--muted);line-height:1.8;max-width:480px;margin:0 auto 56px;opacity:0;transition:opacity .8s ease .5s;}
+.cta-sub.vis{opacity:1;}
+.cta-acts{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;opacity:0;transition:opacity .8s ease .7s;}
+.cta-acts.vis{opacity:1;}
+.cta-email{display:block;margin-top:48px;font-family:var(--mono);font-size:clamp(12px,1.2vw,15px);letter-spacing:.25em;color:var(--muted);text-decoration:none;opacity:0;transition:opacity .8s ease .9s,color .3s;}
+.cta-email.vis{opacity:1;}
+.cta-email:hover{color:var(--accent);}
+
+/* FOOTER */
+footer{padding:48px clamp(24px,6vw,100px);display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;gap:20px;}
+.ft-logo{font-size:20px;font-weight:800;letter-spacing:-.02em;}
+.ft-logo span{color:var(--accent);}
+.ft-copy{font-family:var(--mono);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);}
+.ft-nav{display:flex;gap:28px;}
+.ft-nav a{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .3s;}
+.ft-nav a:hover{color:var(--accent);}
+
+@media(max-width:900px){
+  .duo{grid-template-columns:1fr;}
+  .ai-hdr{grid-template-columns:1fr;gap:24px;}
+  .ai-feats{grid-template-columns:1fr;}
+  .proc-grid{grid-template-columns:1fr 1fr;}
+  #numbers{grid-template-columns:1fr 1fr;}
+  .pr{grid-template-columns:60px 1fr 120px;}
+  .pr-year{display:none;}
+}
+@media(max-width:600px){
+  .proc-grid{grid-template-columns:1fr;}
+  .hero-btns{flex-direction:column;}
+  .pr{grid-template-columns:40px 1fr;}
+  .pr-type{display:none;}
+  footer{flex-direction:column;align-items:flex-start;}
+  .ft-nav{display:none;}
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <!-- EDITABLE HEADER LOGO -->
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="brand-logo" id="headerLogo" alt="TRB Creative Logo" data-edit-image data-edit-id="img_header_logo">
-        <span data-edit>TRB Creative</span>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<div id="loader">
+  <div class="ld-logo">TRB<span>.</span></div>
+  <div class="ld-track"><div class="ld-fill"></div></div>
+  <div class="ld-label">Initializing Studio</div>
+</div>
+
+<div class="grid-bg"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">TRB Creative Studio — Est. 2016</div>
+    <h1 class="hero-h1">
+      <span class="hl"><span class="hi d1">We Build</span></span>
+      <span class="hl"><span class="hi d2">Websites &</span></span>
+      <span class="hl"><span class="hi d3">AI Products.</span></span>
+    </h1>
+    <p class="hero-sub">Custom websites and AI-powered digital products — designed with precision, engineered to perform, built to outlast trends.</p>
+    <div class="hero-btns">
+      <a href="#cta" class="btn-p"><span>Start a Project →</span></a>
+      <a href="#work" class="btn-g">View Our Work</a>
+    </div>
+  </div>
+  <div class="scroll-ind">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="tk-item"><span class="tk-dot"></span>Custom Websites</span>
+    <span class="tk-item"><span class="tk-dot"></span>AI-Powered Products</span>
+    <span class="tk-item"><span class="tk-dot"></span>Web Applications</span>
+    <span class="tk-item"><span class="tk-dot"></span>Intelligent Interfaces</span>
+    <span class="tk-item"><span class="tk-dot"></span>Brand Systems</span>
+    <span class="tk-item"><span class="tk-dot"></span>Conversational UI</span>
+    <span class="tk-item"><span class="tk-dot"></span>Custom Websites</span>
+    <span class="tk-item"><span class="tk-dot"></span>AI-Powered Products</span>
+    <span class="tk-item"><span class="tk-dot"></span>Web Applications</span>
+    <span class="tk-item"><span class="tk-dot"></span>Intelligent Interfaces</span>
+    <span class="tk-item"><span class="tk-dot"></span>Brand Systems</span>
+    <span class="tk-item"><span class="tk-dot"></span>Conversational UI</span>
+  </div>
+</div>
+
+<!-- WHAT WE BUILD -->
+<section class="sec" id="work">
+  <div class="eyebrow">What We Build</div>
+  <h2 class="sh2">Two things.<br><em>Done exceptionally.</em></h2>
+  <div class="duo">
+    <div class="svc">
+      <div class="svc-glow"></div>
+      <p class="svc-num">01 / 02</p>
+      <div class="svc-icon">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="10" width="48" height="34" rx="3" stroke="rgba(0,229,255,.5)" stroke-width="1.5"/>
+          <line x1="4" y1="20" x2="52" y2="20" stroke="rgba(0,229,255,.3)" stroke-width="1"/>
+          <circle cx="11" cy="15" r="2" fill="rgba(0,229,255,.4)"/>
+          <circle cx="18" cy="15" r="2" fill="rgba(0,229,255,.25)"/>
+          <circle cx="25" cy="15" r="2" fill="rgba(0,229,255,.15)"/>
+          <rect x="10" y="27" width="36" height="2" rx="1" fill="rgba(0,229,255,.2)"/>
+          <rect x="10" y="33" width="24" height="2" rx="1" fill="rgba(0,229,255,.12)"/>
+          <line x1="22" y1="44" x2="34" y2="44" stroke="rgba(0,229,255,.3)" stroke-width="1.5"/>
+          <line x1="28" y1="44" x2="28" y2="50" stroke="rgba(0,229,255,.3)" stroke-width="1.5"/>
+        </svg>
       </div>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#work" data-edit>Work</a></li><li><a href="#services" data-edit>Services</a></li><li><a href="#process" data-edit>Process</a></li><li><a href="#testimonials" data-edit>Testimonials</a></li>
-        </ul>
-      </nav>
-      <div class="right">
-        <div class="connection-status" title="Connecting to database..."></div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌓</button>
-        <a class="btn ghost" href="#work" data-edit>See Work</a>
-        <a class="btn primary" href="mailto:trbcreative7@gmail.com" data-edit>Email me</a>
+      <div class="svc-title">Custom Websites</div>
+      <p class="svc-body">Marketing sites, portfolios, e-commerce, and web apps — built from scratch, pixel-perfect, and engineered for speed. No templates. Every line written for you.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">Design System</span>
+        <span class="svc-tag">React / Next.js</span>
+        <span class="svc-tag">CMS Integration</span>
+        <span class="svc-tag">Performance</span>
+        <span class="svc-tag">SEO</span>
       </div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero"><div class="container hero-grid"><div class="reveal"><div class="eyebrow"><span class="dot"></span> <span data-edit>AI-powered Web Developer</span></div><h1 class="brand-title" id="logoWrap"><img id="heroLogo" class="title-logo" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="TRB Creative logo" data-edit-image data-edit-id="img_hero_logo"><span class="grad" data-edit>TRB Creative</span><div class="drop-hint">Drop logo to upload</div></h1><p class="lead" data-edit>I build clean, fast websites that convert.</p><div class="hero-ctas"><a class="btn primary" href="#work" data-edit>See projects</a><a class="btn" href="tel:9733145787" data-edit>Call: 9733145787</a></div><div style="display:flex; gap:14px; align-items:center; margin-top:16px" aria-label="Tooling"><span class="chip" data-edit>React</span><span class="chip" data-edit>Next.js</span><span class="chip" data-edit>Tailwind/CSS</span><span class="chip" data-edit>OpenAI</span><span class="chip" data-edit>Vercel</span></div></div><div class="hero-cards reveal"><div class="card"><div class="stat" data-edit>20+</div><div class="muted" data-edit>Websites shipped for friends, NGOs, and events</div></div><div class="card"><div class="stat" data-edit>A+</div><div class="muted" data-edit>Lighthouse scores: speed, SEO, accessibility</div></div><div class="card"><div class="stat" data-edit>24–72h</div><div class="muted" data-edit>Typical delivery for landing pages</div></div><div class="card"><div class="stat" data-edit>5⭐</div><div class="muted" data-edit>Happy clients and repeat work</div></div></div></div></section>
-    <section id="services"><div class="container"><div class="section-head"><div><h2 class="section-title" data-edit>Services</h2><p class="section-sub" data-edit>End‑to‑end builds, clean UI, SEO, and automations.</p></div></div><div class="grid services reveal"><div class="service"><h3 data-edit>AI Site Build</h3><p class="muted" data-edit>Design + development using AI to move fast without losing quality.</p><div class="tags"><span class="chip" data-edit>Landing pages</span><span class="chip" data-edit>Business sites</span></div></div><div class="service"><h3 data-edit>Revamp & UI Cleanup</h3><p class="muted" data-edit>Modernize your current site: layouts, colors, components.</p><div class="tags"><span class="chip" data-edit>Figma → Code</span></div></div><div class="service"><h3 data-edit>Speed & SEO</h3><p class="muted" data-edit>Performance audits, Core Web Vitals, on‑page SEO, schema.</p><div class="tags"><span class="chip" data-edit>Lighthouse 90+</span></div></div><div class="service"><h3 data-edit>Automation</h3><p class="muted" data-edit>Forms, emails, CMS, chatbots, Zapier/Make integrations.</p><div class="tags"><span class="chip" data-edit>No‑code + code</span></div></div></div></div></section>
-    <section id="work"><div class="container"><div class="section-head"><div><h2 class="section-title" data-edit>Selected Work</h2><p class="section-sub" data-edit>A mix of NGO, events, and small businesses.</p></div><button class="add-btn" data-edit-control id="addWorkBtn"><span>+</span> Add Work Item</button></div><div class="grid work reveal" id="workGrid"></div></div></section>
-    <section id="process"><div class="container"><div class="section-head"><div><h2 class="section-title" data-edit>Process</h2><p class="section-sub" data-edit>Simple, fast, transparent.</p></div></div><div class="grid process reveal"><div class="step"><div class="n">1</div><h3 data-edit>Discover</h3><p class="muted" data-edit>Quick call to align on goals, audience, and style.</p></div><div class="step"><div class="n">2</div><h3 data-edit>Design</h3><p class="muted" data-edit>Wireframe → polished UI, with 1–2 fast iterations.</p></div><div class="step"><div class="n">3</div><h3 data-edit>Build</h3><p class="muted" data-edit>Clean code, SEO, analytics, integrations.</p></div><div class="step"><div class="n">4</div><h3 data-edit>Launch + Support</h3><p class="muted" data-edit>Deploy, handover, and ongoing updates if needed.</p></div></div></div></section>
-    <section id="testimonials"><div class="container"><div class="section-head"><div><h2 class="section-title" data-edit>What clients say</h2><p class="section-sub" data-edit>Real results, fast delivery.</p></div><button class="add-btn" data-edit-control id="addTestimonialBtn"><span>+</span> Add Testimonial</button></div><div class="grid testimonials reveal" id="testimonialsGrid"></div></div></section>
-    
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <div><h2 class="section-title" data-edit>About me</h2><p class="section-sub" data-edit>Mastering AI + clean UI to ship fast.</p></div>
-        </div>
-        <!-- NEW ABOUT LAYOUT -->
-        <div class="about-grid reveal">
-          <div class="about-photo-wrap">
-            <img id="aboutPhoto" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="A photo of Tirtharaj Brahma" data-edit-image data-edit-id="img_about_photo">
-            <div class="drop-hint">Drop your photo here</div>
-          </div>
-          <div class="about-text">
-            <p data-edit>Hi, I’m Tirtharaj Brahma — a web developer who builds modern, fast, and beautiful websites. I’ve shipped sites for friends, NGOs, and event organizers, and I use AI tools to move quickly while keeping design quality high.</p>
-            <p data-edit>Tech I love: React, Next.js, Tailwind/CSS, Headless CMS, OpenAI, Vercel. Focus: clean UI, great mobile UX, and measurable results.</p>
-          </div>
-        </div>
+    <div class="svc">
+      <div class="svc-glow"></div>
+      <p class="svc-num">02 / 02</p>
+      <div class="svc-icon">
+        <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="28" cy="28" r="22" stroke="rgba(123,94,167,.5)" stroke-width="1.5"/>
+          <circle cx="28" cy="28" r="6" fill="rgba(123,94,167,.3)"/>
+          <line x1="6" y1="28" x2="22" y2="28" stroke="rgba(123,94,167,.4)" stroke-width="1"/>
+          <line x1="34" y1="28" x2="50" y2="28" stroke="rgba(123,94,167,.4)" stroke-width="1"/>
+          <line x1="28" y1="6" x2="28" y2="22" stroke="rgba(123,94,167,.4)" stroke-width="1"/>
+          <line x1="28" y1="34" x2="28" y2="50" stroke="rgba(123,94,167,.4)" stroke-width="1"/>
+          <line x1="12" y1="12" x2="22" y2="22" stroke="rgba(123,94,167,.25)" stroke-width="1"/>
+          <line x1="34" y1="34" x2="44" y2="44" stroke="rgba(123,94,167,.25)" stroke-width="1"/>
+          <line x1="44" y1="12" x2="34" y2="22" stroke="rgba(123,94,167,.25)" stroke-width="1"/>
+          <line x1="12" y1="44" x2="22" y2="34" stroke="rgba(123,94,167,.25)" stroke-width="1"/>
+        </svg>
       </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container foot">
-      <div style="display:flex; align-items:center; gap:10px">
-        <!-- SYNCED FOOTER LOGO -->
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" class="brand-logo" id="footerLogo" alt="TRB Creative Logo">
-        <div><strong data-edit>TRB Creative</strong><br><span class="muted" data-edit>AI‑powered Web Developer</span></div>
-      </div>
-      <div class="links">
-        <a href="mailto:trbcreative7@gmail.com">Email</a><a href="tel:9733145787">Call</a>
-        <a href="https://github.com/yourhandle" target="_blank" rel="noopener" data-edit>GitHub</a>
-        <a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener" data-edit>LinkedIn</a>
-        <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" data-edit>Twitter</a>
-      </div>
-      <div style="display:flex; align-items:center; gap:8px">
-        <div class="muted">© <span id="year"></span> <span data-edit>TRB Creative</span></div>
-        <button id="adminMenu" class="kebab" aria-label="Edit site" title="Edit site (password)">⋮</button>
+      <div class="svc-title">AI-Powered Websites</div>
+      <p class="svc-body">Websites with intelligence built in — AI chatbots, content generation, personalization engines, semantic search, and recommendation layers. Your site learns and adapts.</p>
+      <div class="svc-tags">
+        <span class="svc-tag">LLM Integration</span>
+        <span class="svc-tag">RAG Systems</span>
+        <span class="svc-tag">AI Chatbots</span>
+        <span class="svc-tag">Personalisation</span>
+        <span class="svc-tag">Semantic Search</span>
       </div>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- MODALS -->
-  <div class="modal-backdrop" id="passwordModal"><div class="modal-card" role="dialog" aria-modal="true"><div class="modal-head"><div class="modal-title">Unlock Editing</div></div><div class="modal-body"><div class="field"><label for="pwInput">Enter password</label><input id="pwInput" type="password" placeholder="••••••••••" autocomplete="current-password" /></div></div><div class="modal-actions"><button class="modal-close" id="pwCancel">Cancel</button><button class="modal-primary" id="pwConfirm">Unlock</button></div></div></div>
-  <div class="modal-backdrop" id="alertModal"><div class="modal-card" role="alertdialog" aria-modal="true"><div class="modal-head"><div class="modal-title" id="alertTitle">Alert</div></div><div class="modal-body"><p id="alertMessage"></p></div><div class="modal-actions"><button class="modal-primary" id="alertOk">OK</button></div></div></div>
-  <div class="modal-backdrop" id="confirmModal"><div class="modal-card" role="dialog" aria-modal="true"><div class="modal-head"><div class="modal-title" id="confirmTitle">Confirmation</div></div><div class="modal-body"><p id="confirmMessage"></p></div><div class="modal-actions"><button class="modal-close" id="confirmCancel">Cancel</button><button class="modal-primary" id="confirmOk">Confirm</button></div></div></div>
+<!-- AI STRIP -->
+<section id="ai-strip">
+  <div class="ai-hdr">
+    <h2 class="ai-h2">AI isn't a feature.<span class="ag">It's the foundation.</span></h2>
+    <p class="ai-desc">We don't bolt AI onto existing designs. We architect websites where intelligence is structural — embedded in how users navigate, discover content, get help, and take action.</p>
+  </div>
+  <div class="ai-feats">
+    <div class="af">
+      <span class="af-icon">🧠</span>
+      <div class="af-name">Conversational Interfaces</div>
+      <p class="af-text">Custom AI assistants trained on your business — answering questions, guiding users, and converting visitors without a human in the loop.</p>
+    </div>
+    <div class="af">
+      <span class="af-icon">⚡</span>
+      <div class="af-name">Dynamic Content</div>
+      <p class="af-text">AI-generated copy, product descriptions, summaries, and recommendations — personalised per user, per context, in real time.</p>
+    </div>
+    <div class="af">
+      <span class="af-icon">🔍</span>
+      <div class="af-name">Semantic Search</div>
+      <p class="af-text">Search that understands intent, not just keywords. Users find exactly what they need — even when they can't fully describe it.</p>
+    </div>
+  </div>
+</section>
 
-  <!-- SCRIPT -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-    import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
+<!-- PROCESS -->
+<section class="sec" id="process">
+  <div class="eyebrow">How We Work</div>
+  <h2 class="sh2">A process built for<br><em>zero surprises.</em></h2>
+  <div class="proc-grid">
+    <div class="ps">
+      <div class="ps-ghost">01</div>
+      <div class="ps-bar"></div>
+      <div class="ps-title">Discovery</div>
+      <p class="ps-text">Goals, audience, competitors, constraints. We map the full picture before touching a tool.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-ghost">02</div>
+      <div class="ps-bar"></div>
+      <div class="ps-title">Design</div>
+      <p class="ps-text">High-fidelity prototypes and a design system you'll own forever — not just a handoff file.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-ghost">03</div>
+      <div class="ps-bar"></div>
+      <div class="ps-title">Build</div>
+      <p class="ps-text">Clean code, tested across devices. AI integrations wired in from day one — not added last minute.</p>
+    </div>
+    <div class="ps">
+      <div class="ps-ghost">04</div>
+      <div class="ps-bar"></div>
+      <div class="ps-title">Launch & Grow</div>
+      <p class="ps-text">Deployment, monitoring, and ongoing iteration. We stay in the picture as your product evolves.</p>
+    </div>
+  </div>
+</section>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBuM616AKgSVsBqjUJwTC3OVHobxk0KF5A", authDomain: "website-e45e0.firebaseapp.com", databaseURL: "https://website-e45e0-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "website-e45e0", storageBucket: "website-e45e0.appspot.com", messagingSenderId: "138767833543", appId: "1:138767833543:web:f8e0cb45dc0ac40291e1e2",
-    };
+<!-- NUMBERS -->
+<div id="numbers">
+  <div class="ni">
+    <div class="nv"><span class="count" data-t="60">0</span><span class="nu">+</span></div>
+    <div class="nl">Websites Launched</div>
+  </div>
+  <div class="ni">
+    <div class="nv"><span class="count" data-t="40">0</span><span class="nu">+</span></div>
+    <div class="nl">AI Projects Delivered</div>
+  </div>
+  <div class="ni">
+    <div class="nv"><span class="count" data-t="98">0</span><span class="nu">%</span></div>
+    <div class="nl">Client Return Rate</div>
+  </div>
+  <div class="ni">
+    <div class="nv"><span class="count" data-t="9">0</span><span class="nu">yrs</span></div>
+    <div class="nl">In the Industry</div>
+  </div>
+</div>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const dbRef = ref(db, 'pageContent');
+<!-- PROJECTS -->
+<section class="sec" id="projects">
+  <div class="eyebrow">Selected Projects</div>
+  <h2 class="sh2">Work that<br><em>speaks for itself.</em></h2>
+  <div class="proj-list">
+    <div class="pr"><span class="pr-idx">001</span><span class="pr-name">Helix Health Platform</span><span class="pr-type">AI-Powered Website</span><span class="pr-year">2025</span><span class="pr-arrow">→</span></div>
+    <div class="pr"><span class="pr-idx">002</span><span class="pr-name">Verdant Studio</span><span class="pr-type">Custom Website</span><span class="pr-year">2024</span><span class="pr-arrow">→</span></div>
+    <div class="pr"><span class="pr-idx">003</span><span class="pr-name">Axiom Commerce</span><span class="pr-type">AI-Powered Website</span><span class="pr-year">2024</span><span class="pr-arrow">→</span></div>
+    <div class="pr"><span class="pr-idx">004</span><span class="pr-name">Epoch Architecture</span><span class="pr-type">Custom Website</span><span class="pr-year">2024</span><span class="pr-arrow">→</span></div>
+    <div class="pr"><span class="pr-idx">005</span><span class="pr-name">Pulse Sound</span><span class="pr-type">AI-Powered Website</span><span class="pr-year">2023</span><span class="pr-arrow">→</span></div>
+  </div>
+</section>
 
-    const $ = (s) => document.querySelector(s);
-    const $$ = (s) => Array.from(document.querySelectorAll(s));
-    const EDIT_PW = "9733145787";
-    let isDataInitialized = false;
+<!-- CTA -->
+<section id="cta">
+  <h2 class="cta-h2">
+    <span class="cw" style="transition-delay:.0s">Ready</span>&nbsp;
+    <span class="cw" style="transition-delay:.12s">to</span>&nbsp;
+    <span class="cw" style="transition-delay:.22s">build</span><br>
+    <span class="cw grad" style="transition-delay:.32s">something</span>&nbsp;
+    <span class="cw" style="transition-delay:.44s">real?</span>
+  </h2>
+  <p class="cta-sub">Tell us what you need. We'll tell you exactly how we'd build it — and what it would cost.</p>
+  <div class="cta-acts">
+    <a href="mailto:hello@trbcreative.co" class="btn-p"><span>Get in Touch →</span></a>
+    <a href="#work" class="btn-g">See Our Work</a>
+  </div>
+  <a href="mailto:hello@trbcreative.co" class="cta-email">hello@trbcreative.co</a>
+</section>
 
-    $('#year').textContent = new Date().getFullYear();
-    const html = document.documentElement;
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) html.setAttribute('data-theme', savedTheme);
-    $('#themeToggle').addEventListener('click', () => {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    });
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">TRB<span>.</span></div>
+  <p class="ft-copy">© 2025 TRB Creative. All rights reserved.</p>
+  <nav class="ft-nav">
+    <a href="#">Work</a>
+    <a href="#">Services</a>
+    <a href="#">Process</a>
+    <a href="mailto:hello@trbcreative.co">Contact</a>
+  </nav>
+</footer>
 
-    const ro = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function loop(){
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+  rx+=(mx-rx)*.1;ry+=(my-ry)*.1;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a,button,.svc,.af,.ps,.pr,.ni').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
 
-    const connectionStatusEl = $('.connection-status');
-    onValue(ref(db, '.info/connected'), (snap) => {
-      const isConnected = snap.val() === true;
-      connectionStatusEl.classList.toggle('connected', isConnected);
-      connectionStatusEl.classList.toggle('disconnected', !isConnected);
-      connectionStatusEl.title = isConnected ? 'Database connected' : 'Database disconnected';
-    });
+// LOADER
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('out'),2300));
 
-    const showModal = (modalEl) => modalEl.classList.add('show');
-    const hideModal = (modalEl) => modalEl.classList.remove('show');
-
-    function showCustomAlert(message, title = 'Alert') {
-      $('#alertTitle').textContent = title;
-      $('#alertMessage').textContent = message;
-      showModal($('#alertModal'));
+// SCROLL REVEAL
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('vis');
+      if(e.target.classList.contains('count'))countUp(e.target);
+      io.unobserve(e.target);
     }
-    
-    function showCustomConfirm(message, onConfirm, title = 'Please Confirm') {
-      $('#confirmTitle').textContent = title;
-      $('#confirmMessage').textContent = message;
-      showModal($('#confirmModal'));
-      const okHandler = () => onConfirm(true);
-      const cancelHandler = () => onConfirm(false);
-      $('#confirmOk').addEventListener('click', okHandler, { once: true });
-      $('#confirmCancel').addEventListener('click', cancelHandler, { once: true });
-      $('#confirmOk').addEventListener('click', () => hideModal($('#confirmModal')), { once: true });
-      $('#confirmCancel').addEventListener('click', () => hideModal($('#confirmModal')), { once: true });
-    }
-    $('#alertOk').addEventListener('click', () => hideModal($('#alertModal')));
+  });
+},{threshold:.18});
+document.querySelectorAll('.eyebrow,.sh2,.svc,.af,.ps,.ni,.pr,.ai-h2,.ai-desc,.cw,.cta-sub,.cta-acts,.cta-email').forEach(el=>io.observe(el));
 
-    function renderWorkItems(items = {}) {
-        const grid = $('#workGrid'); grid.innerHTML = '';
-        Object.entries(items).forEach(([id, item]) => {
-            const figure = document.createElement('figure'); figure.className = 'work-card'; figure.dataset.id = id;
-            figure.innerHTML = `<img src="${item.src}" alt="${item.alt || 'Project image'}" loading="lazy" data-edit-image><div class="drop-hint">Drop image to upload</div><button class="remove-btn" data-edit-control title="Remove item">&times;</button>`;
-            grid.appendChild(figure);
-        });
-        if (document.body.classList.contains('editing')) enableEditFeatures();
-    }
-    function renderTestimonials(items = {}) {
-        const grid = $('#testimonialsGrid'); grid.innerHTML = '';
-        Object.entries(items).forEach(([id, item]) => {
-            const figure = document.createElement('figure'); figure.className = 'quote'; figure.dataset.id = id;
-            figure.innerHTML = `<button class="remove-btn" data-edit-control title="Remove item">&times;</button><div class="stars" data-edit>${item.stars}</div><blockquote data-edit>${item.quote}</blockquote><figcaption class="muted" data-edit>${item.author}</figcaption>`;
-            grid.appendChild(figure);
-        });
-        if (document.body.classList.contains('editing')) enableEditFeatures();
-    }
+// COUNT UP
+function countUp(el){
+  const t=+el.dataset.t,dur=1600,s=performance.now();
+  (function f(n){
+    const p=Math.min((n-s)/dur,1),e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(e*t);
+    if(p<1)requestAnimationFrame(f);
+    else el.textContent=t;
+  })(s);
+}
+document.querySelectorAll('.count').forEach(el=>io.observe(el));
 
-    onValue(dbRef, (snapshot) => {
-        const data = snapshot.val(); isDataInitialized = !!data; if (!data) return;
-        Object.entries(data.text || {}).forEach(([id, content]) => {
-            const el = $(`[data-edit-id="${id}"]`); if (el) el.innerHTML = content;
-        });
-        Object.entries(data.images || {}).forEach(([id, src]) => {
-            // SPECIAL CASE: Sync header and footer logos
-            if (id === 'img_header_logo') {
-                const headerLogo = $('#headerLogo');
-                const footerLogo = $('#footerLogo');
-                if (headerLogo) headerLogo.src = src;
-                if (footerLogo) footerLogo.src = src;
-            } else {
-                const el = $(`[data-edit-id="${id}"]`); if (el) el.src = src;
-            }
-        });
-        Object.entries(data.links || {}).forEach(([id, linkData]) => {
-            const el = $(`[data-edit-id="${id}"]`); if (el) {
-              if (linkData.href) el.href = linkData.href; if (linkData.text) el.innerHTML = linkData.text;
-            }
-        });
-        renderWorkItems(data.workItems);
-        renderTestimonials(data.testimonials);
-    });
-
-    function scrapeDataFromDOM() {
-      const data = { text: {}, images: {}, links: {}, workItems: {}, testimonials: {} };
-      $$('[data-edit-id]').forEach(el => {
-          const id = el.dataset.editId;
-          if (el.closest('#workGrid') || el.closest('#testimonialsGrid')) return;
-          if (id.startsWith('t')) data.text[id] = el.innerHTML;
-          else if (id.startsWith('img')) data.images[id] = el.src;
-          else if (id.startsWith('a')) data.links[id] = { href: el.getAttribute('href'), text: el.innerHTML };
-      });
-      $$('#workGrid .work-card').forEach(card => {
-          const id = card.dataset.id || `work_${Date.now()}`;
-          data.workItems[id] = { src: $('img', card).src, alt: $('img', card).alt };
-      });
-      $$('#testimonialsGrid .quote').forEach(card => {
-          const id = card.dataset.id || `testi_${Date.now()}`;
-          data.testimonials[id] = { stars: $('.stars', card).innerHTML, quote: $('blockquote', card).innerHTML, author: $('figcaption', card).innerHTML };
-      });
-      return data;
-    }
-    async function saveDataToFirebase() {
-        const dataToSave = scrapeDataFromDOM();
-        try {
-            await set(dbRef, dataToSave);
-            $('#saveEdits').textContent = 'Saved ✅';
-            setTimeout(() => { $('#saveEdits').textContent = 'Save' }, 1500);
-        } catch (error) { showCustomAlert(`Could not save data. Error: ${error.message}`, "Save Failed"); }
-    }
-    function resetData() {
-        showCustomConfirm("This will PERMANENTLY delete all content from the database. Are you sure?", (ok) => {
-            if (ok) remove(dbRef).then(() => location.reload());
-        }, "Reset All Content?");
-    }
-
-    const editableSelector = `[data-edit], .stars, blockquote, figcaption`;
-    function assignEditIds() {
-        $$('[data-edit]').forEach((el, i) => { if (!el.dataset.editId) el.dataset.editId = 't' + i });
-        $$('[data-edit-image]').forEach((img, i) => { if (!img.dataset.editId) img.dataset.editId = `img_` + (img.id || i) });
-        $$('a[data-edit]').forEach((a, i) => { if (!a.dataset.editId) a.dataset.editId = 'a' + i });
-    }
-    assignEditIds();
-
-    const editControls = document.createElement('div');
-    editControls.className = 'edit-controls'; editControls.hidden = true;
-    editControls.innerHTML = `<span class="edit-chip">Edit mode</span><button class="edit-btn" id="saveEdits">Save</button><button class="edit-btn" id="exitEdits">Exit</button><button class="edit-btn danger" id="resetEdits">Reset All</button>`;
-    document.body.appendChild(editControls);
-
-    function setEditing(active) { document.body.classList.toggle('editing', active); editControls.hidden = !active; if (active) enableEditFeatures(); else disableEditFeatures(); }
-    function enableEditFeatures() {
-      $$(editableSelector).forEach(el => { el.setAttribute('contenteditable', 'true'); if (el.tagName === 'A') el.addEventListener('click', e => e.preventDefault(), { capture: true }); });
-      $$('[data-edit-image]').forEach(img => {
-        const wrap = img.closest('.work-card, .brand-title, .brand, .about-photo-wrap');
-        if (wrap && !wrap._dropCleanup) { img.style.cursor = 'pointer'; wrap._dropCleanup = enableImageEditing(wrap, img); }
-      });
-      $$('.remove-btn').forEach(btn => { btn.addEventListener('click', (e) => {
-          const card = e.target.closest('[data-id]'), type = card.classList.contains('work-card') ? 'workItems' : 'testimonials';
-          showCustomConfirm("Are you sure you want to remove this item?", (ok) => { if (ok) remove(ref(db, `pageContent/${type}/${card.dataset.id}`)); });
-        }, { once: true });
-      });
-    }
-    function disableEditFeatures() {
-      $$(editableSelector).forEach(el => { el.setAttribute('contenteditable', 'false'); if (el.tagName === 'A') el.removeEventListener('click', e => e.preventDefault(), { capture: true }); });
-      $$('[data-edit-image]').forEach(img => {
-        const wrap = img.closest('.work-card, .brand-title, .brand, .about-photo-wrap');
-        if (wrap && wrap._dropCleanup) { img.style.cursor = ''; wrap._dropCleanup(); delete wrap._dropCleanup; }
-      });
-    }
-
-    const fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*'; fileInput.style.display = 'none'; document.body.appendChild(fileInput);
-    function fileToDataURL(file) { return new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); }); }
-    async function handleImageUpload(file, imgElement) {
-      if (!file || !file.type.startsWith('image/')) return;
-      const originalSrc = imgElement.src;
-      imgElement.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'%3E%3Ccircle cx='50' cy='50' r='32' stroke-width='8' stroke='%237c3aed' stroke-dasharray='50.26 50.26' fill='none' stroke-linecap='round'%3E%3CanimateTransform attributeName='transform' type='rotate' repeatCount='indefinite' dur='1s' keyTimes='0;1' values='0 50 50;360 50 50'%3E%3C/animateTransform%3E%3C/circle%3E%3C/svg%3E";
-      try { imgElement.src = await fileToDataURL(file); } catch (error) { imgElement.src = originalSrc; showCustomAlert(`Could not read file.`, "File Error"); }
-    }
-    function enableImageEditing(dropZone, imgElement) {
-      const onDragOver = (e) => { e.preventDefault(); dropZone.classList.add('dragging'); };
-      const onDragLeave = () => dropZone.classList.remove('dragging');
-      const onDrop = (e) => { e.preventDefault(); dropZone.classList.remove('dragging'); handleImageUpload(e.dataTransfer.files[0], imgElement); };
-      const onImageClick = () => { fileInput.onchange = (e) => { handleImageUpload(e.target.files[0], imgElement); fileInput.value = ''; }; fileInput.click(); };
-      dropZone.addEventListener('dragover', onDragOver); dropZone.addEventListener('dragleave', onDragLeave); dropZone.addEventListener('drop', onDrop); imgElement.addEventListener('click', onImageClick);
-      return () => { dropZone.removeEventListener('dragover', onDragOver); dropZone.removeEventListener('dragleave', onDragLeave); dropZone.removeEventListener('drop', onDrop); imgElement.removeEventListener('click', onImageClick); }
-    }
-
-    $('#adminMenu').addEventListener('click', () => { $('#pwInput').value = ''; showModal($('#passwordModal')); setTimeout(() => $('#pwInput').focus(), 50); });
-    const tryUnlock = () => { if ($('#pwInput').value.trim() === EDIT_PW) { hideModal($('#passwordModal')); setEditing(true); if (!isDataInitialized) { showCustomConfirm( "First time editing? Save current content to the database?", (ok) => { if (ok) saveDataToFirebase(); }, "Initialize Content?"); } } else { showCustomAlert('Incorrect password.', 'Access Denied'); } };
-    $('#pwCancel').addEventListener('click', () => hideModal($('#passwordModal')));
-    $('#pwConfirm').addEventListener('click', tryUnlock);
-    $('#pwInput').addEventListener('keydown', e => e.key === 'Enter' && tryUnlock());
-    $('#saveEdits').addEventListener('click', saveDataToFirebase);
-    $('#exitEdits').addEventListener('click', () => setEditing(false));
-    $('#resetEdits').addEventListener('click', resetData);
-    $('#addWorkBtn').addEventListener('click', () => { set(ref(db, `pageContent/workItems/work_${Date.now()}`), { src: 'https://via.placeholder.com/400x220/7c3aed/ffffff?text=New+Project', alt: 'A new project' }); });
-    $('#addTestimonialBtn').addEventListener('click', () => { set(ref(db, `pageContent/testimonials/testi_${Date.now()}`), { stars: '★★★★★', quote: 'A new glowing testimonial.', author: '— New Happy Client' }); });
-  </script>
+// PARALLAX
+window.addEventListener('scroll',()=>{
+  const y=scrollY;
+  const h1=document.querySelector('.hero-h1');
+  if(h1)h1.style.transform=`translateY(${y*.22}px)`;
+  document.querySelectorAll('.orb').forEach((o,i)=>{
+    o.style.transform=`translate(${y*(i*.01)}px,${y*(-.04+i*.02)}px)`;
+  });
+});
+</script>
 </body>
 </html>
